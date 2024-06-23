@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    </style>
+    
+</head>
+<body>
+    
+    <script>
+        var input = document.createElement('input');
+        input.setAttribute('id', 'entrer');
+        input.setAttribute('type', 'text');
+        input.setAttribute('placeholder', 'entrer une ville');
+
+        var ajouter = document.createElement('input');
+        ajouter.setAttribute('id', 'ajouter');
+        ajouter.setAttribute('type', 'submit');
+        ajouter.setAttribute('value', 'ajouter');
+
+        var supprimer = document.createElement('input');
+        supprimer.setAttribute('id', 'supprimer');
+        supprimer.setAttribute('type', 'submit');
+        supprimer.setAttribute('value', 'supprimer');
+
+        var list = document.createElement('ul');
+        list.setAttribute('id', 'list');
+        
+        document.body.appendChild(input);
+        document.body.appendChild(ajouter);
+        document.body.appendChild(supprimer);
+        document.body.appendChild(list);
+       
+        ajouter.addEventListener('click',() =>{
+            var input = document.getElementById('entrer');
+            var valeursaisie = input.value;
+        
+            if(valeursaisie){
+                var li = document.createElement('li');
+                var content = document.createTextNode(valeursaisie);
+                li.appendChild(content);
+            
+                li.style.cssText=`
+                background: aqua;
+                padding: 5px;
+                width: 30%;
+                word-wrap: break-word;
+                border: 2px solid black;
+                list-style: none;
+                `; 
+
+                    document.getElementById('list').appendChild(li);
+
+                    var div1 = li.onmousedown = () =>{
+                    li.setAttribute('class', 'selected');
+                    li.style.cssText = `
+                    background: green;
+                    padding: 5px;
+                    width: 30%;
+                    word-wrap: break-word;
+                    border: 2px solid black;
+                    list-style: none;`
+                };
+            }
+            else{
+                document.write('entrer une ville');
+            }
+        });
+        document.write('<br><br>');
+
+        supprimer.addEventListener('click', () =>{
+            var li1 = document.querySelectorAll('#list .selected');
+                li1.forEach(function(div1){
+                div1.remove();
+            });
+        });
+    
+    </script>
+</body>
+</html>
